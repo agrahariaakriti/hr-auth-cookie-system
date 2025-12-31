@@ -6,7 +6,7 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173", // for local dev
-  "https://earnest-toffee-6a5983.netlify.app", // your Netlify URL
+  "https://earnest-toffee-6a5983.netlify.app/", // your Netlify URL
 ];
 
 app.use(
