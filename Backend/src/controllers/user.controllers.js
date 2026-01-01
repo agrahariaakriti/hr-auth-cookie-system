@@ -86,7 +86,7 @@ const login = async (req, res) => {
   const options = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: "none",
   };
 
   user.refreshToken = Refreshtoken;
@@ -122,13 +122,13 @@ const logout = async (req, res) => {
   const options = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: "none",
   };
 
   return res
     .status(200)
     .clearCookie("AccessToken", options)
-    .clearCookie("RefeshToken", options)
+    .clearCookie("RefreshToken", options)
     .json({ message: "User logout successFully" });
 };
 // // Exporting the controllers
