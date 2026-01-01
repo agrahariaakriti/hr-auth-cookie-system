@@ -42,7 +42,7 @@ const registers = async (req, res) => {
     email,
     password: hashPassword,
     fullname,
-    avatar: avatarCloudinary.url,
+    avatar: avatarCloudinary.secure_url,
   });
   const userCreatedOrNot = await User.findById(user._id).select(
     "-password -refreshToken"
