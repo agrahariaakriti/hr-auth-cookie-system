@@ -10,7 +10,7 @@ const Home = () => {
   //
   const logout = async () => {
     try {
-      const login = await api.get("/logout");
+      const logout = await api.get("/logout");
 
       navigate("/");
     } catch (error) {

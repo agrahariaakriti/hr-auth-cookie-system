@@ -85,8 +85,9 @@ const login = async (req, res) => {
 
   const options = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: true,
     sameSite: "none",
+    path: "/",
   };
 
   user.refreshToken = Refreshtoken;
@@ -121,8 +122,9 @@ const logout = async (req, res) => {
   );
   const options = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: true,
     sameSite: "none",
+    path: "/",
   };
 
   return res
