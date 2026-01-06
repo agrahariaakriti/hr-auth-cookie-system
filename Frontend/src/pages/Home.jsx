@@ -2,71 +2,90 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "../Store/DataStore";
 import api from "../api/axios";
+
 const Home = () => {
   const { userData, loading } = useContext(DataContext);
   const navigate = useNavigate();
-  //
-  // LogOut Logic
-  //
-  const chgDetail = async () => {
-    navigate("/chgDetail");
-  };
+
+  // Redirect if not authenticated
+  useEffect(() => {
+    if (!loading && !userData) {
+      navigate("/");
+    }
+  }, [loading, userData, navigate]);
+
   const logout = async () => {
     try {
-      const logout = await api.get("/logout");
-
+      await api.get("/logout");
       navigate("/");
     } catch (error) {
       console.log("Error while Logout", error);
     }
   };
 
-  if (loading) return <h1>Loading... </h1>;
+  const chgDetail = () => {
+    navigate("/chgDetail");
+  };
 
-  if (!userData) return navigate("/");
-  else
-    return (
-      <>
-        <main className="container">
-          <div className="bg-body-tertiary p-5 rounded">
-            <h1 className="mb-2">Welcome To Home Page</h1>
-            <h3 className="mb-4 ">Profile</h3>
+  if (loading) return <h2 className="text-center mt-5">Loading...</h2>;
+  if (!userData) return null;
 
-            <div
-              className="card text-bg-secondary mb-4"
-              style={{ maxWidth: "600px" }}
-            >
-              <div className="row g-0 align-items-center p-3">
-                <div className="col-4">
-                  <img
-                    src={userData.avatar.url}
-                    className="img-fluid rounded-start"
-                    alt="avatar"
-                  />
-                </div>
+  return (
+    <main className="container mt-5">
+      <div className="bg-body-tertiary p-4 rounded shadow-sm">
+        <h1 className="mb-1">Welcome</h1>
+        <h4 className="text-muted mb-4">User Profile</h4>
 
-                <div className="col-8 p-5">
-                  <div className="card-body">
-                    <h5 className="card-title">{userData.fullname}</h5>
-                    <p className="card-text">Username: {userData.username}</p>
-                    <p className="card-text">Email: {userData.email}</p>
-                  </div>
-                </div>
+        {/* PROFILE CARD */}
+        <div className="card shadow-sm mb-4" style={{ maxWidth: "720px" }}>
+          <div className="row g-0 align-items-center">
+            {/* Avatar */}
+            <div className="col-md-4 text-center p-3">
+              <img
+                src={userData?.avatar?.url || "/default-avatar.png"}
+                alt="avatar"
+                className="rounded-circle img-fluid"
+                style={{
+                  width: "130px",
+                  height: "130px",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+
+            {/* User Info */}
+            <div className="col-md-8">
+              <div className="card-body">
+                <h5 className="card-title mb-3">{userData.fullname}</h5>
+
+                <p className="mb-1">
+                  <strong>Username:</strong> {userData.username}
+                </p>
+
+                <p className="mb-0">
+                  <strong>Email:</strong> {userData.email}
+                </p>
               </div>
             </div>
-
-            {/* Logout */}
-            <div className="container d-flex justify-content-between ">
-              <button className="btn btn-lg btn-primary" onClick={logout}>
-                LogOut
-              </button>
-              <button className="btn btn-lg btn-primary" onClick={chgDetail}>
-                Change Detail
-              </button>
-            </div>
           </div>
-        </main>
-      </>
-    );
+        </div>
+
+        {/* ACTION BUTTONS */}
+        <div
+          className="d-flex justify-content-between"
+          style={{ maxWidth: "720px" }}
+        >
+          <button className="btn btn-outline-danger" onClick={logout}>
+            Log Out
+          </button>
+
+          <button className="btn btn-primary" onClick={chgDetail}>
+            Change Details
+          </button>
+        </div>
+      </div>
+    </main>
+  );
 };
+
 export default Home;

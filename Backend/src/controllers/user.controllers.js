@@ -1,5 +1,4 @@
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
-import nodemailer from "nodemailer";
 import {
   hashedPassword,
   isPasswordCorrect,
@@ -7,7 +6,6 @@ import {
   generateRefreshTokens,
 } from "../models/user.model.js";
 import { User } from "../models/user.model.js";
-import crypto from "crypto";
 import { deleteFromCloudinary } from "../utils/cloudinary.js";
 //
 //
