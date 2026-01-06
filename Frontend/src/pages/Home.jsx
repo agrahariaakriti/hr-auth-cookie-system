@@ -8,6 +8,9 @@ const Home = () => {
   //
   // LogOut Logic
   //
+  const chgDetail = async () => {
+    navigate("/chgDetail");
+  };
   const logout = async () => {
     try {
       const logout = await api.get("/logout");
@@ -36,7 +39,7 @@ const Home = () => {
               <div className="row g-0 align-items-center p-3">
                 <div className="col-4">
                   <img
-                    src={userData.avatar}
+                    src={userData.avatar.url}
                     className="img-fluid rounded-start"
                     alt="avatar"
                   />
@@ -53,9 +56,14 @@ const Home = () => {
             </div>
 
             {/* Logout */}
-            <button className="btn btn-lg btn-primary" onClick={logout}>
-              LogOut
-            </button>
+            <div className="container d-flex justify-content-between ">
+              <button className="btn btn-lg btn-primary" onClick={logout}>
+                LogOut
+              </button>
+              <button className="btn btn-lg btn-primary" onClick={chgDetail}>
+                Change Detail
+              </button>
+            </div>
           </div>
         </main>
       </>

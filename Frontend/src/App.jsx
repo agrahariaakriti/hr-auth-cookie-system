@@ -3,8 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import { useContext } from "react";
-import { DataContext } from "./Store/DataStore";
+import ChgDetail from "./pages/ChnDetail";
 function App() {
   return (
     <Routes>
@@ -12,7 +11,8 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/home" element={<Home />} />
-      {/* <Route path="/logout" element={<Welcome />} /> */}
+
+      <Route path="/chgDetail" element={<ChgDetail />} />
     </Routes>
   );
 }

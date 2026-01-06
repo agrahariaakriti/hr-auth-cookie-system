@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { DataProvider } from "../Store/DataStore";
 const Welcome = () => {
   const navigate = useNavigate();
 
@@ -23,7 +22,7 @@ const Welcome = () => {
         <div className="d-inline-flex gap-2 mb-5">
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
             onClick={() => {
               navigate("/register");
             }}
@@ -32,7 +31,7 @@ const Welcome = () => {
           </button>
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
             onClick={() => {
               navigate("/login");
             }}

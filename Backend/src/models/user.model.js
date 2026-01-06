@@ -13,8 +13,14 @@ const UserSchema = new mongoose.Schema(
       required: true,
     },
     avatar: {
-      type: String,
-      require: true,
+      url: {
+        type: String,
+        require: true,
+      },
+      avatar_public_id: {
+        type: String,
+        required: true,
+      },
     },
     email: {
       type: String,
@@ -28,6 +34,12 @@ const UserSchema = new mongoose.Schema(
     refreshToken: {
       type: String,
       default: null,
+    },
+    passwordResetToken: {
+      type: String,
+    },
+    passwordResetExpires: {
+      type: Number,
     },
   },
   { timestamps: true }

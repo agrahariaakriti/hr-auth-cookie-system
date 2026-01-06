@@ -33,7 +33,6 @@ function Register() {
       <div className="container w-50 mt-5 pt-5">
         <h3 className="mb-3">Register Form</h3>
         <div className="input-group input-group-sm mb-3">
-          {error && <h4>{error}</h4>}
           <span className="input-group-text" id="inputGroup-sizing-sm">
             Full-Name
           </span>
@@ -45,6 +44,7 @@ function Register() {
             onChange={(e) => {
               SetFormData({ ...formData, fullname: e.target.value });
             }}
+            required
           />
         </div>
         <div className="input-group input-group-sm mb-3">
@@ -59,6 +59,7 @@ function Register() {
             onChange={(e) => {
               SetFormData({ ...formData, username: e.target.value });
             }}
+            required
           />
         </div>
 
@@ -74,6 +75,7 @@ function Register() {
             onChange={(e) => {
               SetFormData({ ...formData, email: e.target.value });
             }}
+            required
           />
         </div>
         <div className="input-group mb-3">
@@ -87,6 +89,7 @@ function Register() {
             onChange={(e) => {
               SetFormData({ ...formData, avatar: e.target.files[0] });
             }}
+            required
           />
         </div>
         <div className="input-group input-group-sm mb-3">
@@ -101,8 +104,11 @@ function Register() {
             onChange={(e) => {
               SetFormData({ ...formData, password: e.target.value });
             }}
+            required
           />
         </div>
+        {error && <p className="text-danger mt-2">{error}</p>}
+
         <button
           type="button"
           className="btn btn-outline-success"
